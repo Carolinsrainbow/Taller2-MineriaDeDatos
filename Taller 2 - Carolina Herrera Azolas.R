@@ -9,19 +9,23 @@ install.packages("rpart.plot")
 library(rpart)
 library(rpart.plot)
 
+## Resumen estadístico
+summary(datos)
+
 ## Cantidad de datos únicos por tipo de clase
-unique(datos$Embarked)
+unique(datos$Pclass)
+
+##Índice de entropía
+## S = -P0*Log2(P0)-P1*Log2(P1)
+
+## Índice de Gini
+## G0 = P0*(1-P0)+ P1*(1-P1)
+
+## Anova con la edad 
 
 
-
-
-
-
-
-
-
-# �rbol de clasificaci�n
-modelo1 <- rpart(Jugar ~ Clima + Temperatura + Humedad + Viento,
+# Árbol de clasificación 
+modelo1 <- rpart(Survived ~ Pclass + Age + Sex,
                  data = datos,
                  method = "class",
                  parms = list(split = "information"),
@@ -30,8 +34,8 @@ modelo1 <- rpart(Jugar ~ Clima + Temperatura + Humedad + Viento,
                                          maxdepth = 5,
                                          cp = 0))
 
-# Especificamos la variable endogena (Jugar) como funci�n de las
-# las variables exogenas (Clima, Temperatura, Humedad y Viento)
+# Especificamos la variable endogena (sobrevivir) como función de las
+# las variables exogenas (Sexo, edad y tipo de cabina Pclass)
 
 # Metodos:
 # "class" para arboles de clasificacion
