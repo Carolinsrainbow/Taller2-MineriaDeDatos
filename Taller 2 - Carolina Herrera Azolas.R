@@ -93,22 +93,101 @@ printcp(modelo1CPGini)
 plotcp(modelo1CPGini)
 
 
-
-
 ##Pregunta 3
 
-# Probemos otras combinaciones de parametros de control:
-modelo2 <- rpart(Survived ~ Pclass + Age + Sex,
-                 data = datos,
-                 method = "class",
-                 parms = list(split = "information"),
-                 control = rpart.control(minsplit = 1,
-                                         minbucket = 1,
-                                         maxdepth = 4,
-                                         cp = 0.005))
+## Otras combinaciones de parametros de control 
 
-rpart.plot(modelo2)
-printcp(modelo2)
-plotcp(modelo2)
+##MINSPLIT
+## Minsplit determina la cantidad mínima de observaciones 
+## para intentar dividir un nodo
+
+## Modelo Entropía
+modeloMinsplitEntropia <- rpart(Survived ~ Pclass + Age + Sex,
+                   data = datos,
+                   method = "class",
+                   parms = list(split = "information"),
+                   control = rpart.control(minsplit = 1,
+                                           minbucket = 1,
+                                           maxdepth = 5,
+                                           cp = 0))
+
+rpart.plot(modeloMinsplitEntropia)
+printcp(modeloMinsplitEntropia)
+plotcp(modeloMinsplitEntropia)
+
+modeloMinsplitEntropia2 <- rpart(Survived ~ Pclass + Age + Sex,
+                                data = datos,
+                                method = "class",
+                                parms = list(split = "information"),
+                                control = rpart.control(minsplit = 3,
+                                                        minbucket = 1,
+                                                        maxdepth = 5,
+                                                        cp = 0))
+
+rpart.plot(modeloMinsplitEntropia2)
+printcp(modeloMinsplitEntropia2)
+plotcp(modeloMinsplitEntropia2)
+
+## MINBUCKET 
+## minbucket determina la cantidad mínima 
+## de observaciones a tener en un nodo terminal
+
+## Modelo Entropía
+
+modeloMinbucketEntropia <- rpart(Survived ~ Pclass + Age + Sex,
+                                data = datos,
+                                method = "class",
+                                parms = list(split = "information"),
+                                control = rpart.control(minsplit = 1,
+                                                        minbucket = 1,
+                                                        maxdepth = 5,
+                                                        cp = 0))
+
+rpart.plot(modeloMinbucketEntropia)
+printcp(modeloMinbucketEntropia)
+plotcp(modeloMinbucketEntropia)
+
+modeloMinbucketEntropia2 <- rpart(Survived ~ Pclass + Age + Sex,
+                                 data = datos,
+                                 method = "class",
+                                 parms = list(split = "information"),
+                                 control = rpart.control(minsplit = 1,
+                                                         minbucket = 2,
+                                                         maxdepth = 5,
+                                                         cp = 0))
+
+rpart.plot(modeloMinbucketEntropia2)
+printcp(modeloMinbucketEntropia2)
+plotcp(modeloMinbucketEntropia2)
 
 
+## MAXDEPTH 
+## maxdepth determina la profundidad máxima 
+## del árbol (el nodo raíz cuenta como 0)
+
+## Modelo Entropía
+modeloMaxdepthEntropia <- rpart(Survived ~ Pclass + Age + Sex,
+                                 data = datos,
+                                 method = "class",
+                                 parms = list(split = "information"),
+                                 control = rpart.control(minsplit = 1,
+                                                         minbucket = 1,
+                                                         maxdepth = 3,
+                                                         cp = 0))
+
+rpart.plot(modeloMaxdepthEntropia)
+printcp(modeloMaxdepthEntropia)
+plotcp(modeloMaxdepthEntropia)
+
+modeloMaxdepthEntropia2 <- rpart(Survived ~ Pclass + Age + Sex,
+                                data = datos,
+                                method = "class",
+                                parms = list(split = "information"),
+                                control = rpart.control(minsplit = 1,
+                                                        minbucket = 1,
+                                                        maxdepth = 2,
+                                                        cp = 0))
+
+rpart.plot(modeloMaxdepthEntropia2)
+printcp(modeloMaxdepthEntropia2)
+plotcp(modeloMaxdepthEntropia2)
